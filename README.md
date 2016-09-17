@@ -1,7 +1,7 @@
 # MemeStock
 MemeStock: Your favorite S&amp;Meme 500 investment tool.
 
-# taken from github: thinkster-django-angular-boilerplate
+*scaffolding taken from github: thinkster-django-angular-boilerplate*
 
 ## Installation
 
@@ -9,7 +9,7 @@ MemeStock: Your favorite S&amp;Meme 500 investment tool.
 [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/) and
 [Node.js](http://nodejs.org/).*
 
-*neglect virtual env downloads - u only need node
+*neglect virtual env downloads - you'll only need node
 
 * Fork this repository.
 * `$ git clone git@github.com:<your username>/thinkster-django-angular-boilerplate.git`

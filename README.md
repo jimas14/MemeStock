@@ -1,7 +1,7 @@
 # MemeStock
 MemeStock: Your favorite S&amp;Meme 500 investment tool.
 
-*taken from github: thinkster-django-angular-boilerplate*
+*scaffolding taken from github: thinkster-django-angular-boilerplate*
 
 ## Installation
 

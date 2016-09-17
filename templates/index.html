@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html ng-app="abc">
+<html ng-app="memeStock">
 <head>
-  <title>thinkster-django-angular-boilerplate</title>
+  <title>MemeStock</title>
 
   <base href="/" />
 
@@ -12,9 +12,8 @@
   {% include 'navbar.html' %}
 
   <div ng-controller="john">
-      {[{ a }]}
-      {{ a }}
-      fdfdfdf
+      <a ui-sref="bruh" ui-sref-active="active">Bruh</a>
+      <ui-view></ui-view>
   </div>
 
   <div class="container-fluid">

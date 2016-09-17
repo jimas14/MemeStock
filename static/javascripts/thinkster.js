@@ -9,13 +9,21 @@
 //
 // }]);
 
-var app = angular.module('abc', []);
+var app = angular.module('memeStock', ['ui.router', 'ui.bootstrap']);
 
-app.config(function($interpolateProvider) {
-  $interpolateProvider.startSymbol('{[{');
-  $interpolateProvider.endSymbol('}]}');
+app.config(function ($stateProvider, $interpolateProvider) {
+    $interpolateProvider.startSymbol('{[{');
+    $interpolateProvider.endSymbol('}]}');
+
+    var bruhState = {
+        name: 'bruh',
+        url: '/bruh',
+        template: '<h3>bruh</h3>'
+    };
+
+    $stateProvider.state(bruhState);
 });
 
-app.controller('john', function($scope) {
+app.controller('john', function ($scope) {
     $scope.a = 4;
 });

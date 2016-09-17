@@ -1,14 +1,3 @@
-// angular.module('abc', []).controller('john', [$scope, $interpolateProvider,
-//
-//     function($scope, $interpolateProvider) {
-//     console.log('ff');
-//         $interpolateProvider.startSymbol('{[{');
-//       $interpolateProvider.endSymbol('}]}');
-//         $scope.a = 4;
-//
-//
-// }]);
-
 var app = angular.module('memeStock', ['ui.router', 'ui.bootstrap']);
 
 app.config(function ($stateProvider, $interpolateProvider) {
@@ -24,6 +13,7 @@ app.config(function ($stateProvider, $interpolateProvider) {
     $stateProvider.state(bruhState);
 });
 
-app.controller('john', function ($scope) {
+app.controller('john', ['$scope', '$state', function ($scope, $state) {
     $scope.a = 4;
-});
+    $state.go('bruh');
+}]);

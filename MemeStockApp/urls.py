@@ -7,7 +7,7 @@ urlpatterns = [
     url(r'^investments', InvestmentsView, name='investments'),
     url(r'^transactions', TransactionsView, name='transactions'),
 
-	url(r'^(?P<meme_name>\w{0,50})/$', views.get_results, name='get_results'),
+	# url(r'^(?P<meme_name>\w{0,50})/$', views.get_results, name='get_results'),
 
 	url(r'^login_info$', views.save_user, name='save_user'),
 	url(r'^buy_sell$', views.buy_sell, name='buy_sell'),

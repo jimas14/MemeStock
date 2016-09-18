@@ -14,7 +14,7 @@ app.controller('TransactionsController', ['$scope', '$http', '$q', '$state', fun
     {
         var request = $http({
             method: 'get',
-            url: 'stocks'
+            url: 'get_all_stocks'
         });
 
         return request.then(handleSuccess, handleFailure);

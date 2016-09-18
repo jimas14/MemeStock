@@ -2,6 +2,7 @@ from django.db import models
 from django.http import HttpResponse
 from django.http import HttpRequest
 from coinbase.wallet.client import Client
+from data import Data
 import requests
 import urllib2
 import urlparse
@@ -61,8 +62,7 @@ class User:
             if loop_investment.name == meme:
                 chosen_investment = loop_investment
 
-        # write get_all_investments
-        all_investments = get_all_investments()
+        all_investments = Data.get_all_stocks()
         ratio = {}
         trend_score = {}
         total_trend_score = 0
@@ -71,6 +71,7 @@ class User:
         for loop_investment in all_investments:
             if loop_investment.current >= 0 and loop_investment.start >= 0:
                 # call some function update_current(meme, date)
+                Data.update_current_data(date)
 
                 # assuming two users can't buy shares in the same exact meme name at once
                 ratio[loop_investment.name] = loop_investment.current / loop_investment.start

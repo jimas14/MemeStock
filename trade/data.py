@@ -12,7 +12,7 @@ class Data:
 
 		user_investments.append(investment)
 
-	def get_user_stock(self, user):
+	def get_user_stocks(self, user):
 		for loop_user in self.users_list:
 			if loop_user.username == user.username:
 				return loop_user.investments
@@ -24,3 +24,21 @@ class Data:
 			new_list.append(loop_user.investments)
 
 		return new_list
+
+	def update_current_data(self, date):
+		
+
+
+		google_username = 'memestocks9000'
+		google_password = 'memesrule1'
+
+		pytrend = TrendReq(google_username, google_password, custom_useragent=None)
+
+		payload = {
+			'q' : meme_name,
+			'date': 'today 1-d'
+		}
+
+		output = pytrend.trend(payload)
+
+		return HttpResponse(json.dumps(output), content_type="application/json")

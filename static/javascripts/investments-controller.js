@@ -51,6 +51,14 @@ app.controller('InvestmentsController', ['$scope', '$http', '$q', '$state', func
         });
     };
 
+    function addProfitLoss()
+    {
+        for ( var x = 0; x < $scope.allStocks.length; x++)
+        {
+            $scope.allStocks[x]['profitLoss'] = $scope.allStocks[x].numShares * ($scope.allStocks[x].currentValue - $scope.allStocks[x].startValue);
+        }
+    }
+
     function handleSuccess(response)
     {
         return response.data;
@@ -66,6 +74,11 @@ app.controller('InvestmentsController', ['$scope', '$http', '$q', '$state', func
     }
 
     $scope.n = ['a', 'c', 'b'];
+    $scope.id = Cookies.get('user');
     // $scope.populateMyInvestments();
     // $scope.populateStocks();
+    $scope.allStocks = [{'name': 'harambe', 'numShares': 50, 'startValue': 100, 'currentValue': 140},
+                        {'name': 'pepe', 'numShares': 1000, 'startValue': 213, 'currentValue': 195}];
+    addProfitLoss();
+    console.log($scope.allStocks);
 }]);

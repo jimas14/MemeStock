@@ -7,7 +7,9 @@ app.config(function ($stateProvider, $interpolateProvider) {
 });
 
 app.controller('TransactionsController', ['$scope', '$http', '$q', '$state', function ($scope, $http, $q, $state) {
-    console.log('fdf');
+
+    $scope.alerts = [];
+
     function getAllStocks()
     {
         var request = $http({
@@ -44,6 +46,31 @@ app.controller('TransactionsController', ['$scope', '$http', '$q', '$state', fun
         return $q.reject(response.data);
     }
 
-    $scope.memes = ['Harambe', 'Doge', 'Bruh', 'Pepe'];
+    $scope.buy = function()
+    {
+        if ($scope.memes.indexOf($scope.meme) == -1)
+        {
+            $scope.alerts.push({type: 'danger', msg: 'Invalid meme!'});
+        }
+        if ($scope.quantity <= 0)
+        {
+            $scope.alerts.push({type: 'danger', msg: 'Invalid quantity!'});
+        }
+    };
+
+    $scope.sell = function ()
+    {
+        if ($scope.memes.indexOf($scope.meme) == -1)
+        {
+            $scope.alerts.push({type: 'danger', msg: 'Invalid meme!'});
+        }
+        if ($scope.quantity <= 0)
+        {
+            $scope.alerts.push({type: 'danger', msg: 'Invalid quantity!'});
+        }
+    };
+
+    $scope.id = Cookies.get('user');
+    $scope.memes = ['Harambe', 'Doge', 'Tree Fiddy', 'Pepe', 'John Cena', 'Miley Cyrus twerking'];
     // $scope.populateStocks();
 }]);

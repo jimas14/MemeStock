@@ -14,15 +14,24 @@
     <div class="row">
         <div class="col-xs-12 ng-view">
             <div ng-controller="TransactionsController">
-                What would you like to purchase?
 
-                <input type="text" ng-model="selected" uib-typeahead="meme for meme in memes | filter:$viewValue | limitTo:8" class="form-control">
+                <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{[{alert.msg}]}</div>
+
+                Enter meme:
+
+                <input type="text" name="input" ng-model="meme" uib-typeahead="meme for meme in memes | filter:$viewValue | limitTo:8"> </input>
 
                 <form novalidate>
-                    Meme name: <input type="text" ng-model="meme"/> <br/>
                     Quantity: <input type="text" ng-model="quantity"/> <br/>
 
-                    <input type="submit" ng-click="update(user)" value="Save" />
+
+
+                    <button type="button" class="btn btn-primary" ng-click="buy()">
+                        Buy
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-click="sell()">
+                        Sell
+                    </button>
                 </form>
             </div>
         </div>
@@ -31,4 +40,6 @@
 
 
 </body>
+
+
 </html>

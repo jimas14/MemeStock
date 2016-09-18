@@ -1,1 +1,1 @@
-web: gunicorn MemeStock.wsgi --log-file -
+web: gunicorn MemeStockApp.wsgi --log-file -

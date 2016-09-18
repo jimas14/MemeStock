@@ -14,19 +14,28 @@
     <div class="row">
         <div class="col-xs-12 ng-view">
             <div ng-controller="InvestmentsController">
-                dd
+                <h1> Welcome, {[{ id }]}! </h1>
+
                 <h3> My investments: </h3>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th ng-repeat="na in n">{[{ na }]} </th>
+                            <th> Meme </th>
+                            <th> No. of Shares </th>
+                            <th> Start value </th>
+                            <th> Current value </th>
+                            <th> Net profit/loss </th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr ng-repeat="">
-                            <td>{[{ dsa }]}</td>
+                        <tr ng-repeat="stock in myInvestments">
+                            <td>{[{ stock.name }]}</td>
+                            <td>{[{ stock.numShares }]}</td>
+                            <td>{[{ stock.startValue }]}</td>
+                            <td>{[{ stock.currentValue }]}</td>
+                            <td>{[{ stock.profitLoss }]}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -34,17 +43,19 @@
                 <br><br>
 
                 <h3> MemeDAQ: </h3>
-                <table>
+                <table class="table">
                     <thead>
                     <tr>
-                        <th ng-repeat=""></th>
+                        <th> Meme </th>
+                        <th> Current value </th>
                         <th>&nbsp;</th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    <tr ng-repeat="">
-                        <td>{[{ dsa }]}</td>
+                    <tr ng-repeat="stock in allStocks">
+                        <td>{[{ stock.name }]}</td>
+                        <td>{[{ stock.currentValue }]}</td>
                     </tr>
                     </tbody>
                 </table>

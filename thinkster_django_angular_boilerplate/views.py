@@ -19,7 +19,7 @@ def get_results(request, meme_name):
 	pytrend = TrendReq(google_username, google_password, custom_useragent=None)
 
 	payload = {
-		'q' : 'harambe',
+		'q' : meme_name,
 		'date': 'today 1-d'
 	}
 

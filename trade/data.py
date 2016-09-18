@@ -25,8 +25,9 @@ class Data:
 
 		return new_list
 
-	def update_current_data(self, date):
-		
+	def update_current_data(self, days):
+		#string_after_dash = date.substring(date.indexOf("-"));
+		#second_dash = 
 
 
 		google_username = 'memestocks9000'
@@ -36,7 +37,7 @@ class Data:
 
 		payload = {
 			'q' : meme_name,
-			'date': 'today 1-d'
+			'date': 'today '+days+'-d'
 		}
 
 		output = pytrend.trend(payload)

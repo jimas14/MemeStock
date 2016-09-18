@@ -1,5 +1,5 @@
 """
-WSGI config for thinkster_django_angular_boilerplate project.
+WSGI config for MemeStock project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/
 """
 
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "thinkster_django_angular_boilerplate.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MemeStock.settings")
 
 from django.core.wsgi import get_wsgi_application
 from dj_static import Cling

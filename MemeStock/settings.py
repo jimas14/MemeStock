@@ -1,5 +1,5 @@
 """
-Django settings for thinkster_django_angular_boilerplate project.
+Django settings for MemeStock project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -50,9 +50,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'thinkster_django_angular_boilerplate.urls'
+ROOT_URLCONF = 'MemeStock.urls'
 
-WSGI_APPLICATION = 'thinkster_django_angular_boilerplate.wsgi.application'
+WSGI_APPLICATION = 'MemeStock.wsgi.application'
 
 
 # Database

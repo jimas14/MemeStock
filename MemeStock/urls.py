@@ -1,9 +1,9 @@
 
 from django.conf.urls import patterns, url
 
-#from thinkster_django_angular_boilerplate.views import IndexView
-from thinkster_django_angular_boilerplate import views
-from thinkster_django_angular_boilerplate.views import indexView, investmentsView, transactionsView
+#from MemeStock.views import IndexView
+from MemeStock import views
+from MemeStock.views import indexView, investmentsView, transactionsView
 
 # urlpatterns = patterns(
 #    '',

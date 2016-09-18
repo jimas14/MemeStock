@@ -5,12 +5,25 @@ app.config(function ($stateProvider, $interpolateProvider) {
     $interpolateProvider.endSymbol('}]}');
 });
 
-app.controller('John', ['$scope', '$state', '$window', function ($scope, $state, $window) {
+app.controller('John', ['$scope', '$state', '$http', '$q', '$window', function ($scope, $state, $http, $q, $window) {
     $scope.login = function()
     {
         Cookies.remove('user');
         Cookies.set('user', $scope.user);
 
-        $window.location.href = '/investments.html';
+        var request = $http({
+            method: 'post',
+            url: 'login_info',
+            data: Cookies.get('user')
+        });
+
+        request.then(function(res) {
+            $window.location.href = '/investments.html';
+        }, function(err) {
+            console.log('woops');
+        });
+
+
     };
+
 }]);

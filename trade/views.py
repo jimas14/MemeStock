@@ -10,20 +10,20 @@ from data import Data
 import json
 
 
-# def get_results(request, meme_name):
-# 	google_username = 'memestocks9000'
-# 	google_password = 'memesrule1'
+def get_results(request, days):
+	google_username = 'memestocks9000'
+	google_password = 'memesrule1'
 
-# 	pytrend = TrendReq(google_username, google_password, custom_useragent=None)
+	pytrend = TrendReq(google_username, google_password, custom_useragent=None)
 
-# 	payload = {
-# 		'q' : meme_name,
-# 		'date': 'today 1-d'
-# 	}
+	payload = {
+		'q' : meme_name,
+		'date': 'today '+days+'-d'
+	}
 
-# 	output = pytrend.trend(payload)
+	output = pytrend.trend(payload)
 
-# 	return HttpResponse(json.dumps(output), content_type="application/json")
+	return HttpResponse(json.dumps(output), content_type="application/json")
 
 def login_info(request):
 	data = request.data
@@ -38,10 +38,10 @@ def buy_sell(request):
 	date = data.date
 	num_shares = data.shares
 
-	if data.method == 'buy':
-    	do_something()
-	elif data.method == 'sell':
-    	do_something_else()
+	# if data.method == 'buy':
+ #    	#do_something()
+	# elif data.method == 'sell':
+ #    	#do_something_else()
 
 def get_user_stocks(request, username):
 	data = request.data

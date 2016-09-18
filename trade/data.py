@@ -2,7 +2,7 @@ from models import User, Investment
 
 class Data:
 	def __init__(self):
-        self.users_list = {}
+		self.users_list = {}
 
 	def add_user(self, user):
 		self.users_list[user.username] = []
@@ -26,10 +26,6 @@ class Data:
 		return new_list
 
 	def update_current_data(self, days):
-		#string_after_dash = date.substring(date.indexOf("-"));
-		#second_dash = 
-
-
 		google_username = 'memestocks9000'
 		google_password = 'memesrule1'
 
@@ -41,5 +37,7 @@ class Data:
 		}
 
 		output = pytrend.trend(payload)
+
+
 
 		return HttpResponse(json.dumps(output), content_type="application/json")

@@ -2,6 +2,11 @@ from django.db import models
 from django.http import HttpResponse
 from django.http import HttpRequest
 from coinbase.wallet.client import Client
+import requests
+import urllib2
+import urlparse
+import json
+
 
 class Investment:
     def __init__(self, name, shares):
@@ -9,6 +14,7 @@ class Investment:
         self.shares = shares
         self.start = 0
         self.current = 0
+
 
 class User:
     def __init__(self, username):
@@ -52,8 +58,8 @@ class User:
         user_investments = self.investments
 
         for loop_investment in user_investments:
-        	if loop_investment.name == meme:
-        		chosen_investment = loop_investment
+            if loop_investment.name == meme:
+                chosen_investment = loop_investment
 
         # write get_all_investments
         all_investments = get_all_investments()
@@ -63,17 +69,15 @@ class User:
         valuation = 0
 
         for loop_investment in all_investments:
-        	if loop_investment.current >= 0 && loop_investment.start >= 0:
+            if loop_investment.current >= 0 and loop_investment.start >= 0:
+                # call some function update_current(meme, date)
 
-        		# call some function update_current(meme, date)
+                # assuming two users can't buy shares in the same exact meme name at once
+                ratio[loop_investment.name] = loop_investment.current / loop_investment.start
 
-        		# assuming two users can't buy shares in the same exact meme name at once
-        		ratio[loop_investment.name] = loop_investment.current / loop_investment.start
+                trend_score[loop_investment.name] = ratio[loop_investment.name] * loop_investment.current
 
-        		trend_score[loop_investment.name] = ratios[loop_investment.name] * loop_investment.current
-
-        		total_trend_score += trend_score[loop_investment.name]
-
+                total_trend_score += trend_score[loop_investment.name]
 
         valuation = trend_score[loop_investment] / total_trend_score
 
@@ -81,35 +85,37 @@ class User:
 
 
 class Wallet:
-	def __init__(self, investments, values):
-	    self.client = Client("TGSWzRvFLeVCsW1W", "wYVR9Zckm2Jb4UFzoBJ6W3cQHLmtl23u")
-	    self.account = self.client.create_acount(name="Meme Wallet")
-	    self.balance = self.account.balance
-	    self.address = self.account.create_address()
-	    self.investments = Investments(investments, values)
-	    self.values = values
+    def __init__(self, users):
+        self.client = Client("TGSWzRvFLeVCsW1W", "wYVR9Zckm2Jb4UFzoBJ6W3cQHLmtl23u")
+        self.accountm = self.client.create_acount(name="Meme Wallet")
+        self.account1 = self.client.create_account(name="Client 1")
+        self.account2 = self.client.create_account(name="Client 2")
+        self.users = users
 
-	def invest(self, name, meme, shares, address):
-	    cost = self.values[meme] * shares
-	    get = HttpRequest()
-	    get.method = 'GET'
-	    get.build_absolute_uri('https://www.coinbase.com/oauth/authorize?client_id=9c73633f55257dcf698fd49a9159bb9eced' +
-	                            '779098abedeaf106bf00674686bc0&redirect_uri=http%3A%2F%2Flocalhost%3A8000' +
-	                            '&response_type=code&scope=wallet%3Auser%3Aread')
-	    #get.
-	    self.investments.buy(name, meme, shares)
+    def invest(self, name, meme, shares):
+        user = self.users.get(name)
+        user.buy(meme, shares)
+        cost = user.calc_value(meme) * shares / 806.9
+        if name == "Client 1":
+            acct = self.account1
+        else:
+            acct = self.account2
+        self.client.transfer_money(self.accountm.id, {'to': acct.id, 'amount': cost, 'currency': 'BTC'})
+        return HttpResponse("%s withdrawn from %s for %d shares of %s." % (cost, name, shares, meme))
 
-	def withdraw(self, name, meme, shares, address):
-	    if self.investments.contains_key(name):
-	        if self.investments[name].contains_key(meme):
-	            if self.investments[name][meme] >= shares:
-	                cost = self.values[meme] * shares
-	                self.investments.sell(name, meme, shares)
-	                return HttpResponse("%s BTC sent to account %s. %d shares of %s taken." % (cost, name, shares, meme))
-	            else:
-	                return HttpResponse("User %s only owns %d shares of %s." % (name, shares, meme), status=400)
-	        else:
-	            return HttpResponse("User %s has no shares in %s." % (name, meme), status=400)
-	    else:
-	        return HttpResponse("Username %s not found." % name, status=400)
-
+    def withdraw(self, name, meme, shares):
+        user = self.users.get(name)
+        cost = user.calc_value(meme) * shares / 806.9
+        if user.contains_key(meme):
+            if self.investments[name][meme] >= shares:
+                user.sell(meme, shares)
+                if name == "Client 1":
+                    acct = self.account1
+                else:
+                    acct = self.account2
+                self.client.transfer_money(acct.id, {'to': self.accountm.id, 'amount': cost, 'currency': 'BTC'})
+                return HttpResponse("%s BTC sent to account %s. %d shares of %s taken." % (cost, name, shares, meme))
+            else:
+                return HttpResponse("User %s only owns %d shares of %s." % (name, shares, meme), status=400)
+        else:
+            return HttpResponse("User %s has no shares in %s." % (name, meme), status=400)

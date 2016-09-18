@@ -21,34 +21,34 @@ class User:
         self.username = username
         self.investments = {}
 
-    def buy(self, meme, shares):
+    def buy(self, meme, shares, date):
         if self.investments.has_key(meme):
             self.investments[meme].shares += shares
-            self.investments[meme].current = User.calc_value(meme)
+            self.investments[meme].current = User.calc_value(meme, date)
         else:
             self.investments[meme] = Investment(meme, shares)
-            val = User.calc_value(meme)
+            val = User.calc_value(meme, date)
             self.investments[meme].start = val
             self.investments[meme].current = val
         return HttpResponse("%d shares added to %s." % (shares, meme))
 
-    def sell(self, meme, shares):
+    def sell(self, meme, shares, date):
         if self.investments.has_key(meme):
             if self.investments[meme].shares >= shares:
                 self.investments[meme].shares -= shares
                 if self.investments[meme].shares == 0:
                     del self.investments[meme]
                 else:
-                    self.investments[meme].current = User.calc_value(meme)
+                    self.investments[meme].current = User.calc_value(meme, date)
                 return HttpResponse("%d shares removed from %s." % (shares, meme))
             else:
                 return HttpResponse("Only %d shares of %s are owned." % (shares, meme), status=400)
         else:
             return HttpResponse("No shares of %s are owned." % meme, status=400)
 
-    def current_value(self, meme):
+    def current_value(self, meme, date):
         if self.investments.has_key(meme):
-            val = User.calc_value(meme)
+            val = User.calc_value(meme, date)
             self.investments[meme].current = val
             return val
         else:

@@ -26,14 +26,25 @@ def get_results(request, meme_name):
 	return HttpResponse(json.dumps(output), content_type="application/json")
 
 def login_info(request):
+	data = request.data
+	username = data.user
 
-	return 0
+	Data.add_user(self, username)
 
 def buy_sell(request):
+	data = request.data
+	username = data.user
+	memename = data.meme
+	date = data.date
+	num_shares = data.shares
 
-	return 0
+	if data.method == 'buy':
+    	do_something()
+	elif data.method == 'sell':
+    	do_something_else()
 
 def get_user_stocks(request, username):
+
 
 	return HttpResponse(json.dumps(output), content_type="application/json")
 

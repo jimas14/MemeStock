@@ -2,7 +2,7 @@
 from django.conf.urls import patterns, url
 
 #from MemeStock.views import IndexView
-from MemeStock.trade.views import IndexView, InvestmentsView, TransactionsView
+from trade.views import IndexView, InvestmentsView, TransactionsView
 
 # urlpatterns = patterns(
 #    '',

@@ -56,6 +56,9 @@ app.controller('TransactionsController', ['$scope', '$http', '$q', '$state', fun
         {
             $scope.alerts.push({type: 'danger', msg: 'Invalid quantity!'});
         }
+
+        console.log($scope.dt);
+        console.log($('.datepicker').val());
     };
 
     $scope.sell = function ()
@@ -70,7 +73,17 @@ app.controller('TransactionsController', ['$scope', '$http', '$q', '$state', fun
         }
     };
 
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
+
     $scope.id = Cookies.get('user');
     $scope.memes = ['Harambe', 'Doge', 'Tree Fiddy', 'Pepe', 'John Cena', 'Miley Cyrus twerking'];
     // $scope.populateStocks();
+
+
+    // $('.datepicker').pickadate({
+    //     selectMonths: true, // Creates a dropdown to control month
+    //     selectYears: 15 // Creates a dropdown of 15 years to control year
+    // });
 }]);

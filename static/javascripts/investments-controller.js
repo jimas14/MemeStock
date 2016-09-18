@@ -11,7 +11,7 @@ app.controller('InvestmentsController', ['$scope', '$http', '$q', '$state', func
     {
         var request = $http({
             method: 'get',
-            url: 'user/' + id
+            url: 'get_user_stocks/' + id
         });
 
         return request.then(handleSuccess, handleFailure);
@@ -21,7 +21,7 @@ app.controller('InvestmentsController', ['$scope', '$http', '$q', '$state', func
     {
         var request = $http({
            method: 'get',
-            url: 'stocks'
+            url: 'get_all_stocks'
         });
 
         return request.then(handleSuccess, handleFailure);

@@ -56,9 +56,28 @@ app.controller('TransactionsController', ['$scope', '$http', '$q', '$state', fun
         {
             $scope.alerts.push({type: 'danger', msg: 'Invalid quantity!'});
         }
+        if ($('.datepicker').val() == '')
+        {
+            $scope.alerts.push({type: 'danger', msg: 'Invalid date!'});
+        }
 
-        console.log($scope.dt);
-        console.log($('.datepicker').val());
+        var request = $http({
+            method: 'post',
+            url: 'buy_sell',
+            data: {
+                method: 'buy',
+                user: Cookies.get('user'),
+                meme: $scope.meme,
+                time: $('.datepicker').val(),
+                shares: parseInt($scope.quantity)
+            }
+        });
+
+        request.then(function(res) {
+            $scope.alerts.push({type: 'success', msg: 'Successfully bought!'});
+        }, function(err) {
+            $scope.alerts.push({type: 'danger', msg: 'Failed!'});
+        });
     };
 
     $scope.sell = function ()
@@ -71,6 +90,28 @@ app.controller('TransactionsController', ['$scope', '$http', '$q', '$state', fun
         {
             $scope.alerts.push({type: 'danger', msg: 'Invalid quantity!'});
         }
+        if ($('.datepicker').val() == '')
+        {
+            $scope.alerts.push({type: 'danger', msg: 'Invalid date!'});
+        }
+
+        var request = $http({
+            method: 'post',
+            url: 'buy_sell',
+            data: {
+                method: 'sell',
+                user: Cookies.get('user'),
+                meme: $scope.meme,
+                time: $('.datepicker').val(),
+                shares: parseInt($scope.quantity)
+            }
+        });
+
+        request.then(function(res) {
+            $scope.alerts.push({type: 'success', msg: 'Successfully sold!'});
+        }, function(err) {
+            $scope.alerts.push({type: 'danger', msg: 'Failed!'});
+        });
     };
 
     $scope.closeAlert = function(index) {

@@ -5,6 +5,7 @@ app.config(function ($stateProvider, $interpolateProvider) {
     $interpolateProvider.endSymbol('}]}');
 });
 
-app.controller('LoginController', ['$scope', '$state', function ($scope, $state) {
-    console.log('reached login controller');
+app.controller('LoginController', ['$scope', '$http', '$q', '$state', function ($scope, $http, $q, $state) {
+
+
 }]);

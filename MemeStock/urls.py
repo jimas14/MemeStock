@@ -2,8 +2,7 @@
 from django.conf.urls import patterns, url
 
 #from MemeStock.views import IndexView
-from MemeStock import views
-from MemeStock.views import indexView, investmentsView, transactionsView
+from MemeStock.trade.views import IndexView, InvestmentsView, TransactionsView
 
 # urlpatterns = patterns(
 #    '',
@@ -14,9 +13,9 @@ from MemeStock.views import indexView, investmentsView, transactionsView
 # )
 
 urlpatterns = [
-    url(r'^$', indexView, name='index'),
-    url(r'^investments', investmentsView, name='investments'),
-    url(r'^transactions', transactionsView, name='transactions'),
+    url(r'^$', IndexView, name='index'),
+    url(r'^investments', InvestmentsView, name='investments'),
+    url(r'^transactions', TransactionsView, name='transactions'),
 	url(r'^(?P<meme_name>\w{0,50})/$', views.get_results, name='get_results')
     #url(r'^login', loginView, name='login'),
     #url(r'^logout', logoutView, name='logout')

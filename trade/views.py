@@ -34,18 +34,18 @@ def get_results(request, meme_name):
 #user = User.objects.create_user(username='user')
 #user.save()
 
-def indexView(request):
+def IndexView(request):
     #request_context = RequestContext(request)
 
     return render(request,'index.html')
 
-def investmentsView(request):
+def InvestmentsView(request):
     #request_context = RequestContext(request)
 
     context = {'investments': True}
     return render(request,'investments.html', context)
 
-def transactionsView(request):
+def TransactionsView(request):
 
     context = {'transactions': True}
     return render(request,'transactions.html', context)

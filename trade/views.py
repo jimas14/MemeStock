@@ -7,8 +7,6 @@ from django.contrib.auth import logout
 from django.http import HttpResponse
 from pytrends.request import TrendReq
 import json
-#from django.template import RequestContext
-#from django.contrib.auth.models import User
 
 
 def get_results(request, meme_name):
@@ -26,13 +24,21 @@ def get_results(request, meme_name):
 
 	return HttpResponse(json.dumps(output), content_type="application/json")
 
+def login_info(request):
 
-# get request - get specific users' investments
-# get request - get all investments
-# post - to coinbase api
+	return 0
 
-#user = User.objects.create_user(username='user')
-#user.save()
+def buy_sell(request):
+
+	return 0
+
+def get_user_stocks(request):
+
+	return 0
+
+def get_all_stocks(request):
+
+	return 0
 
 def IndexView(request):
     #request_context = RequestContext(request)

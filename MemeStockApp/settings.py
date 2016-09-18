@@ -50,9 +50,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'MemeStock.urls'
+ROOT_URLCONF = 'MemeStockApp.urls'
 
-WSGI_APPLICATION = 'MemeStock.wsgi.application'
+WSGI_APPLICATION = 'MemeStockApp.wsgi.application'
 
 
 # Database

@@ -30,7 +30,7 @@
                     </thead>
 
                     <tbody>
-                        <tr ng-repeat="stock in allStocks">
+                        <tr ng-repeat="stock in myInvestments">
                             <td>{[{ stock.name }]}</td>
                             <td>{[{ stock.numShares }]}</td>
                             <td>{[{ stock.startValue }]}</td>
@@ -43,17 +43,19 @@
                 <br><br>
 
                 <h3> MemeDAQ: </h3>
-                <table>
+                <table class="table">
                     <thead>
                     <tr>
-                        <th></th>
+                        <th> Meme </th>
+                        <th> Current value </th>
                         <th>&nbsp;</th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td>{[{ dsa }]}</td>
+                    <tr ng-repeat="stock in allStocks">
+                        <td>{[{ stock.name }]}</td>
+                        <td>{[{ stock.currentValue }]}</td>
                     </tr>
                     </tbody>
                 </table>

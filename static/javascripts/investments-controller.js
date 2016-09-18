@@ -53,9 +53,9 @@ app.controller('InvestmentsController', ['$scope', '$http', '$q', '$state', func
 
     function addProfitLoss()
     {
-        for ( var x = 0; x < $scope.allStocks.length; x++)
+        for ( var x = 0; x < $scope.myInvestments.length; x++)
         {
-            $scope.allStocks[x]['profitLoss'] = $scope.allStocks[x].numShares * ($scope.allStocks[x].currentValue - $scope.allStocks[x].startValue);
+            $scope.myInvestments[x]['profitLoss'] = $scope.myInvestments[x].numShares * ($scope.myInvestments[x].currentValue - $scope.myInvestments[x].startValue);
         }
     }
 
@@ -77,8 +77,14 @@ app.controller('InvestmentsController', ['$scope', '$http', '$q', '$state', func
     $scope.id = Cookies.get('user');
     // $scope.populateMyInvestments();
     // $scope.populateStocks();
-    $scope.allStocks = [{'name': 'harambe', 'numShares': 50, 'startValue': 100, 'currentValue': 140},
+    $scope.myInvestments = [{'name': 'harambe', 'numShares': 50, 'startValue': 100, 'currentValue': 140},
                         {'name': 'pepe', 'numShares': 1000, 'startValue': 213, 'currentValue': 195}];
     addProfitLoss();
-    console.log($scope.allStocks);
+
+    $scope.allStocks = [{'name': 'harambe', 'currentValue': 140},
+        {'name': 'pepe', 'currentValue': 195},
+        {'name': 'Tree Fiddy', 'currentValue': 133},
+        {'name': 'Doge', 'currentValue': 100},
+        {'name': 'John Cena', 'currentValue': 231},
+        {'name': 'Miley Cyrus twerking', 'currentValue': 13}]
 }]);

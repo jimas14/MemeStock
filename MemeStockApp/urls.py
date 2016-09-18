@@ -12,6 +12,6 @@ urlpatterns = [
 	url(r'^login_info$', views.save_user, name='save_user'),
 	url(r'^buy_sell$', views.buy_sell, name='buy_sell'),
 
-	url(r'^get_user_stocks/(?P<meme_name>\w{0,50})/$', views.get_user_stocks, name='get_user_stocks'),
+	url(r'^get_user_stocks/(?P<username>\w{0,50})/$', views.get_user_stocks, name='get_user_stocks'),
 	url(r'^get_all_stocks$', views.get_all_stocks, name='get_all_stocks')
 ]

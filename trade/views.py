@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.http import HttpResponse
 from pytrends.request import TrendReq
+from data import Data
 import json
 
 
@@ -32,13 +33,13 @@ def buy_sell(request):
 
 	return 0
 
-def get_user_stocks(request):
+def get_user_stocks(request, username):
 
-	return 0
+	return HttpResponse(json.dumps(output), content_type="application/json")
 
 def get_all_stocks(request):
 
-	return 0
+	return HttpResponse(json.dumps(output), content_type="application/json")
 
 def IndexView(request):
     #request_context = RequestContext(request)

@@ -6,6 +6,7 @@
 {#  <base href="/" />#}
 
   {% include 'stylesheets.html' %}
+
 </head>
 
 <body>
@@ -15,8 +16,11 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 ng-view">
-          <div ng-controller="john">
-              <a href="/login">dsdsd</a>
+          <div ng-controller="John">
+              <input type="text" name="input" ng-model="user" ng-pattern="example.word" required ng-trim="false">
+              <button type="button" class="btn btn-primary" ng-click="login()">
+                  Login
+              </button>
           </div>
       </div>
     </div>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="memeStock">
+<head>
+    <title>MemeStock</title>
+
+    {% include 'stylesheets.html' %}
+</head>
+
+<body>
+{% include 'navbar.html' %}
+{% include 'javascripts.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 ng-view">
+            <div ng-controller="InvestmentsController">
+                dd
+                <h3> My investments: </h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="na in n">{[{ na }]} </th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="">
+                            <td>{[{ dsa }]}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <br><br>
+
+                <h3> MemeDAQ: </h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th ng-repeat=""></th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="">
+                        <td>{[{ dsa }]}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

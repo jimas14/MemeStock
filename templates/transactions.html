@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="memeStock">
+<head>
+    <title>MemeStock</title>
+
+    {% include 'stylesheets.html' %}
+</head>
+
+<body>
+{% include 'navbar.html' %}
+{% include 'javascripts.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 ng-view">
+            <div ng-controller="TransactionsController">
+                What would you like to purchase?
+
+                <input type="text" ng-model="selected" uib-typeahead="meme for meme in memes | filter:$viewValue | limitTo:8" class="form-control">
+
+                <form novalidate>
+                    Meme name: <input type="text" ng-model="meme"/> <br/>
+                    Quantity: <input type="text" ng-model="quantity"/> <br/>
+
+                    <input type="submit" ng-click="update(user)" value="Save" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

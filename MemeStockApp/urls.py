@@ -3,7 +3,7 @@ from django.conf.urls import patterns, url
 
 #from MemeStock.views import IndexView
 from trade.views import IndexView, InvestmentsView, TransactionsView
-import views
+import trade.views
 
 # urlpatterns = patterns(
 #    '',

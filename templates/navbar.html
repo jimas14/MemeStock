@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Not Google Plus</a>
+      <a class="navbar-brand" ui-sref="bruh" ui-sref-active="active">Meme<b>Stock</b></a>
     </div> <!-- ./navbar-header -->
 
     <div class="collapse navbar-collapse" id="not-google-plus-nav">
@@ -17,8 +17,8 @@
           <li><a href="/+{{ user.username }}/settings">Settings</a></li>
           <li><a href="javascript:void(0)">Logout</a></li>
         {% else %}
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Register</a></li>
+{#          <li><a href="/login">Login</a></li>#}
+{#          <li><a href="/register">Register</a></li>#}
         {% endif %}
       </ul>
     </div> <!-- /.collapse.navbar-collapse -->

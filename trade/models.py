@@ -69,13 +69,13 @@ class User:
         valuation = 0
 
         for loop_investment in all_investments:
-            if loop_investment.current >= 0 & & loop_investment.start >= 0:
+            if loop_investment.current >= 0 and loop_investment.start >= 0:
                 # call some function update_current(meme, date)
 
                 # assuming two users can't buy shares in the same exact meme name at once
                 ratio[loop_investment.name] = loop_investment.current / loop_investment.start
 
-                trend_score[loop_investment.name] = ratios[loop_investment.name] * loop_investment.current
+                trend_score[loop_investment.name] = ratio[loop_investment.name] * loop_investment.current
 
                 total_trend_score += trend_score[loop_investment.name]
 

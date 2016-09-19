@@ -7,11 +7,11 @@ app.config(function ($stateProvider, $interpolateProvider) {
 
 app.controller('InvestmentsController', ['$scope', '$http', '$q', '$state', function ($scope, $http, $q, $state) {
     // Get investments
-    function getMyInvestments(id)
+    function getMyInvestments()
     {
         var request = $http({
             method: 'get',
-            url: 'get_user_stocks/' + id
+            url: 'get_user_stocks/' + $scope.id
         });
 
         return request.then(handleSuccess, handleFailure);
@@ -21,7 +21,7 @@ app.controller('InvestmentsController', ['$scope', '$http', '$q', '$state', func
     {
         var request = $http({
            method: 'get',
-            url: 'get_all_stocks'
+            url: 'get_all_stocks/'
         });
 
         return request.then(handleSuccess, handleFailure);
@@ -29,12 +29,13 @@ app.controller('InvestmentsController', ['$scope', '$http', '$q', '$state', func
 
     $scope.populateMyInvestments = function()
     {
-        getMyInvestments(id).then(function(result) {
+        getMyInvestments($scope.id).then(function(result) {
             if (null != result)
             {
                 $scope.myInvestments = result.myInvestments;
             }
         }, function(err) {
+            window.alert("You have no investments yet.");
             console.log('bruh something went wrong');
         });
     };
@@ -75,10 +76,12 @@ app.controller('InvestmentsController', ['$scope', '$http', '$q', '$state', func
 
     $scope.n = ['a', 'c', 'b'];
     $scope.id = Cookies.get('user');
+    console.log($scope.id);
     // $scope.populateMyInvestments();
     // $scope.populateStocks();
     $scope.myInvestments = [{'name': 'harambe', 'numShares': 50, 'startValue': 100, 'currentValue': 140},
-                        {'name': 'pepe', 'numShares': 1000, 'startValue': 213, 'currentValue': 195}];
+                       {'name': 'pepe', 'numShares': 1000, 'startValue': 213, 'currentValue': 195}];
+
     addProfitLoss();
 
     $scope.allStocks = [{'name': 'harambe', 'currentValue': 140},

@@ -6,11 +6,11 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.http import HttpResponse
 from pytrends.request import TrendReq
-from data import Data
+import data
 import json
 
 
-def get_results(request, days):
+def get_results(request, meme_name, num_days):
 	google_username = 'memestocks9000'
 	google_password = 'memesrule1'
 
@@ -18,18 +18,37 @@ def get_results(request, days):
 
 	payload = {
 		'q' : meme_name,
-		'date': 'today '+days+'-d'
+		'date': 'today '+num_days+'-d'
 	}
 
 	output = pytrend.trend(payload)
 
-	return HttpResponse(json.dumps(output), content_type="application/json")
+	info = output['table']['rows'][0]['c'][1]['f']
+
+	return HttpResponse(json.dumps(info), content_type="application/json")
 
 def login_info(request):
-	data = request.data
-	username = data.user
 
-	Data.add_user(username)
+	# print request.POST
+	# print request.body
+
+
+	# print("\n\n\n\n\n\nfdf\n\n\n\n")
+	username = ""
+
+	if request.method == "POST":
+		#data = request.data
+		#username = request.body["user"]
+		#username = data.user
+		#user_data = username
+		print("first if")
+		#Data.add_user(user_data)
+	elif request.method == "GET":
+		#print("second if")
+	 	return HttpResponse(json.dumps(username), content_type="application/json")
+
+	#print("alll the way down")
+	return HttpResponse(json.dumps(username), content_type="application/json")
 
 def buy_sell(request):
 	data = request.data
@@ -38,12 +57,15 @@ def buy_sell(request):
 	date = data.date
 	num_shares = data.shares
 
-	# if data.method == 'buy':
- #    	#do_something()
-	# elif data.method == 'sell':
- #    	#do_something_else()
+	return HttpResponse(json.dumps(username), content_type="application/json")
+
+	#if data.method == 'buy':
+    	#do_something()
+	#elif data.method == 'sell':
+    	#do_something_else()
 
 def get_user_stocks(request, username):
+	print("aiwioawd\n\n")
 	data = request.data
 	username = data.user
 

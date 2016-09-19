@@ -2,7 +2,7 @@ from django.db import models
 from django.http import HttpResponse
 from django.http import HttpRequest
 from coinbase.wallet.client import Client
-from data import Data
+import data
 import requests
 import urllib2
 import urlparse
@@ -15,7 +15,6 @@ class Investment:
         self.shares = shares
         self.start = 0
         self.current = 0
-
 
 class User:
     def __init__(self, username):

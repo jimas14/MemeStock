@@ -56,7 +56,7 @@ app.controller('TransactionsController', ['$scope', '$http', '$q', '$state', fun
         {
             $scope.alerts.push({type: 'danger', msg: 'Invalid quantity!'});
         }
-        if ($('.datepicker').val() == '')
+        if ($scope.days == '')
         {
             $scope.alerts.push({type: 'danger', msg: 'Invalid date!'});
         }
@@ -68,7 +68,7 @@ app.controller('TransactionsController', ['$scope', '$http', '$q', '$state', fun
                 method: 'buy',
                 user: Cookies.get('user'),
                 meme: $scope.meme,
-                time: $('.datepicker').val(),
+                time: $scope.days,
                 shares: parseInt($scope.quantity)
             }
         });
@@ -90,7 +90,7 @@ app.controller('TransactionsController', ['$scope', '$http', '$q', '$state', fun
         {
             $scope.alerts.push({type: 'danger', msg: 'Invalid quantity!'});
         }
-        if ($('.datepicker').val() == '')
+        if ($scope.days == '')
         {
             $scope.alerts.push({type: 'danger', msg: 'Invalid date!'});
         }
@@ -102,7 +102,7 @@ app.controller('TransactionsController', ['$scope', '$http', '$q', '$state', fun
                 method: 'sell',
                 user: Cookies.get('user'),
                 meme: $scope.meme,
-                time: $('.datepicker').val(),
+                time: $scope.days,
                 shares: parseInt($scope.quantity)
             }
         });
@@ -123,7 +123,7 @@ app.controller('TransactionsController', ['$scope', '$http', '$q', '$state', fun
     // $scope.populateStocks();
 
 
-    // $('.datepicker').pickadate({
+    // $scope.days.pickadate({
     //     selectMonths: true, // Creates a dropdown to control month
     //     selectYears: 15 // Creates a dropdown of 15 years to control year
     // });

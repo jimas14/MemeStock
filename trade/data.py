@@ -38,6 +38,6 @@ class Data:
 
 		output = pytrend.trend(payload)
 
+		info = output.table.rows[0].c[1].f
 
-
-		return HttpResponse(json.dumps(output), content_type="application/json")
+		return HttpResponse(json.dumps(info), content_type="application/json")
